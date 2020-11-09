@@ -8,10 +8,12 @@ class UsersController < ApplicationController
     def create
         user = User.new(name: params["name"], password: params["password"])
         if user.save 
-            session["user_id"] = user.id
-            cookies["user_i"] = user.id
+            # session[:user_id] = user.id
+            # cookies[:user_i] = user.id
+            # render json: Item.find(params["id"]).to_json()
+            render json: user
         else
-            session["user_id"] = user.name
+            # session["user_id"] = user.name
         end
     end
 
