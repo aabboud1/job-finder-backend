@@ -7,13 +7,33 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.destroy_all
 Job.destroy_all
+Bid.destroy_all
 
-user = User.create(name: "Hyrum", isGovernment: true, password: "password")
-job = Job.create(name: "Build Wall", 
+user_govt = User.create(name: "Hyrum", isGovernment: true, password: "password")
+user_company = User.create(name: "Ahmed", isGovernment: false, password: "password")
+user_company_two = User.create(name: "Adam", isGovernment: false, password: "password")
+
+rand_company_id = [user_company.id, user_company_two.id]
+
+10.times{Job.create(name: "Build Wall", 
            price: "13.23", 
            deadline: "9999-12-31 23:59:59", 
-           govt_id: 0,
-           company_id: 0)
+           govt_id: user_govt.id,
+           company_id: nil)}
 
-byebug
-0
+job_id_arr =[]
+
+10.times{Job.create(name: "Build Wall", 
+            price: "13.23", 
+            deadline: "9999-12-31 23:59:59", 
+            govt_id: user_govt.id,
+            company_id: user_company.id)}
+
+Job.all.each do |job| 
+  Bid.create(job_id: job.id, 
+              company_id: rand_company_id.sample(),
+              bid_price: rand(1..100.00), 
+              time_to_completion: "9999-12-31 23:59:59", 
+              notes: "I'm a note.")
+end
+
