@@ -6,7 +6,10 @@ class UsersController < ApplicationController
     end
 
     def create
-        user = User.new(name: params["name"], password: params["password"])
+        user = User.new(name: params["name"], 
+                    password: params["password"], 
+                    isGovernment: params["isGovernment"])
+
         if user.save 
             # session[:user_id] = user.id
             # cookies[:user_i] = user.id
@@ -20,7 +23,7 @@ class UsersController < ApplicationController
     def process_login
         user = User.find_by(name: params["name"])
         if user && user.authenticate(params["password"])
-            print "you're ok and in"
+            render json: user
         else
             print "You're not ok and out"
         end
