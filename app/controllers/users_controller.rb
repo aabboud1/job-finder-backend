@@ -5,6 +5,12 @@ class UsersController < ApplicationController
         render params
     end
 
+    def show
+        token = request.headers["Authentication"].split(" ")[1]
+
+        render json: User.find(decode(token)["user_id"]), status: :accepted
+    end
+
     def create
         user = User.new(name: params["name"], 
                     password: params["password"], 
