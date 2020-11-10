@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.destroy_all
+Job.destroy_all
+
+user = User.create(name: "Hyrum", isGovernment: true, password: "password")
+job = Job.create(name: "Build Wall", 
+           price: "13.23", 
+           deadline: "9999-12-31 23:59:59", 
+           govt_id: 0,
+           company_id: 0)
+
+byebug
+0
