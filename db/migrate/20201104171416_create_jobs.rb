@@ -5,7 +5,7 @@ class CreateJobs < ActiveRecord::Migration[6.0]
       t.float :price
       t.datetime :deadline
       t.integer :govt_id
-      t.integer :compant_id
+      t.integer :company_id
       t.integer :bid_id
 
       t.timestamps

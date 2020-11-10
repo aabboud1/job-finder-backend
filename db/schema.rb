@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2020_11_04_171720) do
     t.float "price"
     t.datetime "deadline"
     t.integer "govt_id"
-    t.integer "compant_id"
+    t.integer "company_id"
     t.integer "bid_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
