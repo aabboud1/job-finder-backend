@@ -23,5 +23,10 @@ class JobsController < ApplicationController
     # end
   end
 
+  def destroy
+    Job.destroy(params[:id])
+    render json: Job.all
+  end
+
 
 end
