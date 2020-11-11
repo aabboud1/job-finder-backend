@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :jobs
   resources :users
   post 'users/login', to: 'users#process_login'
-  get 'jobs/new', to: 'jobs#new'
+  post 'jobs/new', to: 'jobs#create'
   get '/home', to: 'users#show'
 
   namespace :api do

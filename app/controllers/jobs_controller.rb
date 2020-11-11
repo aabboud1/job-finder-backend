@@ -6,15 +6,21 @@ class JobsController < ApplicationController
   end
 
   def create 
-    byebug
-      job = Job.new(name: params["name"],
-                    price: params["price"],
-                    deadline: params["deadline"],
-                    govt_id: params["govt_id"]
-                  )
-      if job.save
-        render json: job
-      end
+    
+    token = request.headers["Authentication"].split(" ")[1]
+    job = Job.new(name: params["name"],
+                  price: params["price"],
+                  deadline: params["deadline"],
+                  govt_id: decode(token)["user_id"]
+                  # company_id: null
+                  # we have an issue that company cannot be null or nil
+                  # let's ask how to handle this
+                )
+                byebug
+    render json: job
+    # if job.save
+    #   render json: job
+    # end
   end
 
 
