@@ -16,11 +16,10 @@ class JobsController < ApplicationController
                   # we have an issue that company cannot be null or nil
                   # let's ask how to handle this
                 )
-                byebug
     render json: job
-    # if job.save
-    #   render json: job
-    # end
+    if job.save
+      render json: job
+    end
   end
 
   def destroy

@@ -12,17 +12,18 @@ class UsersController < ApplicationController
     end
 
     def create
-        user = User.new(name: params["name"], 
+        @user = User.new(name: params["name"], 
                     password: params["password"], 
                     isGovernment: params["isGovernment"])
 
-        if user.save 
-            # session[:user_id] = user.id
-            # cookies[:user_i] = user.id
-            # render json: Item.find(params["id"]).to_json()
-            render json: user
-        else
-            # session["user_id"] = user.name
+        if @user.save 
+            token = encode("user_id": @user.id)
+            render json: {
+                authenticated: true,
+                message: "You're logged in",
+                token: token,
+                user: @user,
+            }, status: :accepted
         end
     end
 

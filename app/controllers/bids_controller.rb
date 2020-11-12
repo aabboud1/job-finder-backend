@@ -1,9 +1,15 @@
 class BidsController < ApplicationController
 
-  def index
+  def userBids
     token = request.headers["Authentication"].split(" ")[1]
     user_id = decode(token)
-    render json: Bid.where(company_id: user_id["user_id"])
+    userBids = []
+    Bid.all.each do |bid|
+      if (bid.company_id == user_id["user_id"])
+        userBids.push(bid)
+      end
+    end
+    render json: userBids
   end
 
 end

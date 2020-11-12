@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post 'users/login', to: 'users#process_login'
   post 'jobs/new', to: 'jobs#create'
   get '/home', to: 'users#show'
+  post '/mybids', to: 'bids#userBids'
 
   namespace :api do
     namespace :v1 do
