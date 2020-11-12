@@ -16,7 +16,8 @@ class JobsController < ApplicationController
                   # we have an issue that company cannot be null or nil
                   # let's ask how to handle this
                 )
-    render json: job
+    # render json: job
+    byebug
     if job.save
       render json: job
     end
@@ -26,6 +27,7 @@ class JobsController < ApplicationController
     Job.destroy(params[:id])
     render json: Job.all
   end
+
 
 
 end
